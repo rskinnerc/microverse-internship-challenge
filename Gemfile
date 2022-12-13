@@ -6,6 +6,7 @@ ruby '2.6.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'dotenv'
+gem 'faraday'
 gem 'jbuilder', '~> 2.5'
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 gem 'pg'
@@ -16,7 +17,6 @@ gem 'sidekiq'
 gem 'turbolinks', '~> 5'
 gem 'typhoeus'
 gem 'uglifier', '>= 1.3.0'
-gem 'faraday'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

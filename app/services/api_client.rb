@@ -6,10 +6,10 @@ class ApiClient
   def self.create_connection
     Faraday.new(
       url: 'https://microverse-api-app.herokuapp.com',
-      headers: { 
-        'Content-Type' => 'application/json', 
+      headers: {
+        'Content-Type' => 'application/json',
         'Accept' => 'application/json',
-        'Authorization' => "An32iK-eRu17"
+        'Authorization' => 'An32iK-eRu17'
       },
       params: {
         'limit' => 20,
