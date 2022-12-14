@@ -25,7 +25,7 @@ RSpec.describe UsersService do
     let(:users_service) { UsersService.new(5, 5) }
     it 'should return an array of 5 users' do
       expect(users_service.get.size).to eq(5)
-      expect(users_service.get.first['id']).to eq(6)
+      expect(users_service.get.first[:id]).to eq(6)
     end
   end
 end
