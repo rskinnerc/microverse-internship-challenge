@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   it 'is valid with valid attributes' do
     user = User.new(external_id: 1, first_name: 'John', last_name: 'Doe', status: 'Active',
-                    external_created_at: '2019-06-18T09:08:28.057Z')
+                    external_created_at: '2019-06-18T09:08:28.057Z', email: 'johndoe@example.com')
     expect(user).to be_valid
   end
 
@@ -32,6 +32,12 @@ RSpec.describe User, type: :model do
 
   it 'is not valid without a external_id' do
     user = User.new(first_name: 'John', last_name: 'Doe', status: 'Active',
+                    external_created_at: '2019-06-18T09:08:28.057Z')
+    expect(user).to_not be_valid
+  end
+
+  it 'is not valid without an email' do
+    user = User.new(external_id: 1, first_name: 'John', last_name: 'Doe', status: 'Active',
                     external_created_at: '2019-06-18T09:08:28.057Z')
     expect(user).to_not be_valid
   end
