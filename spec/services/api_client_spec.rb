@@ -1,11 +1,12 @@
 require 'rails_helper'
 
-describe ApiClient do
+RSpec.describe ApiClient do
+  let(:api_client) { ApiClient.new(0, 20) }
   it 'should have a connectin instance variable' do
-    expect(ApiClient.connection).to be_a Faraday::Connection
+    expect(api_client.connection).to be_a Faraday::Connection
   end
 
   it 'should have a create connection method' do
-    expect(ApiClient).to respond_to(:create_connection)
+    expect(api_client).to respond_to(:create_connection)
   end
 end
