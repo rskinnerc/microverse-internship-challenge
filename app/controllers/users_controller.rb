@@ -2,10 +2,10 @@ class UsersController < ApplicationController
   def index
     @page, @limit = offset_and_limit
 
-    @users = if filter.present?
-               User.filter_by_status(@filter).paginate(@page.to_i, @limit.to_i)
-             else
+    @users = if filter.nil?
                User.paginate(@page.to_i, @limit.to_i)
+             else
+               User.filter_by_status(@filter).paginate(@page.to_i, @limit.to_i)
              end
 
     @pages = User.pages(@limit, @filter)
@@ -28,7 +28,6 @@ class UsersController < ApplicationController
   end
 
   def filter
-    @filter = params[:filter]
-    @filter
+    @filter = !params[:filter].nil? && params[:filter].empty? ? nil : params[:filter]
   end
 end

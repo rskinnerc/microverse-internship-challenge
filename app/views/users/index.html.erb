@@ -7,6 +7,24 @@
       <li class="text-cyan-600 border-t-2 border-b-2 first:border-l-2 last:border-r-2 first:rounded-l-md last:rounded-r-md p-2"><%= link_to page+1, users_path(page: page + 1, limit: @limit, filter: @filter)  %></li>
     <% end %>
   </ul>
+  <div class="py-6">
+    <form action="" class="flex gap-4 items-center">
+      <label for="limit">Limit</label>
+      <select name="limit" id="limit">
+        <option value="10" <%= @limit.to_i == 10 && 'selected' %>>10</option>
+        <option value="20" <%= @limit.to_i == 20  && 'selected' %>>20</option>
+        <option value="50" <%= @limit.to_i == 50 && 'selected' %>>50</option>
+        <option value="100" <%= @limit.to_i == 100 && 'selected' %>>100</option>
+      </select>
+      <label for="filter">Filter</label>
+      <select name="filter" id="filter">
+        <option value="" <%= @filter == nil && 'selected' %>>All</option>
+        <option value="Active" <%= @filter == 'Active' && 'selected' %>>Active</option>
+        <option value="Inactive" <%= @filter == 'Inactive' && 'selected' %>>Inactive</option>
+      </select>
+      <input type="submit" value="Filter" class="border-2 border-cyan-700 text-cyan-700 py-0.5 px-3 rounded-md">
+    </form>
+  </div>
   <table class="table-auto border-2">
     <thead class="border-b">
       <tr>
