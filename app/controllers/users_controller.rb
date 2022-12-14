@@ -3,11 +3,11 @@ class UsersController < ApplicationController
     page, limit = offset_and_limit
     @pages = User.pages(limit)
 
-    if params[:filter].present?
-      @users = User.filter_by_status(params[:filter]).paginate(page.to_i, limit.to_i)
-    else
-      @users = User.paginate(page.to_i, limit.to_i)
-    end
+    @users = if params[:filter].present?
+               User.filter_by_status(params[:filter]).paginate(page.to_i, limit.to_i)
+             else
+               User.paginate(page.to_i, limit.to_i)
+             end
 
     respond_to do |format|
       format.html
