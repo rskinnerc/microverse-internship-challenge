@@ -1,0 +1,53 @@
+
+<section class="w-full md:w-8/12 md:mx-auto">
+  <h1 class="mt-16 mb-6 text-cyan-500 text-2xl text-center">Awesome Users</h1>
+  <p class="text-fuchsia-700 text-center my-5">A list of awesome users fetched from Microverse's API</p>
+  <ul class="flex justify-center p-2">
+    <% @pages.times do |page| %>
+      <li class="text-cyan-600 border-t-2 border-b-2 first:border-l-2 last:border-r-2 first:rounded-l-md last:rounded-r-md p-2"><%= link_to page+1, users_path(page: page + 1, limit: @limit, filter: @filter)  %></li>
+    <% end %>
+  </ul>
+  <div class="py-6">
+    <form action="" class="flex gap-4 items-center">
+      <label for="limit">Limit</label>
+      <select name="limit" id="limit">
+        <option value="10" <%= @limit.to_i == 10 && 'selected' %>>10</option>
+        <option value="20" <%= @limit.to_i == 20  && 'selected' %>>20</option>
+        <option value="50" <%= @limit.to_i == 50 && 'selected' %>>50</option>
+        <option value="100" <%= @limit.to_i == 100 && 'selected' %>>100</option>
+      </select>
+      <label for="filter">Filter</label>
+      <select name="filter" id="filter">
+        <option value="" <%= @filter == nil && 'selected' %>>All</option>
+        <option value="Active" <%= @filter == 'Active' && 'selected' %>>Active</option>
+        <option value="Inactive" <%= @filter == 'Inactive' && 'selected' %>>Inactive</option>
+      </select>
+      <input type="submit" value="Filter" class="border-2 border-cyan-700 text-cyan-700 py-0.5 px-3 rounded-md">
+    </form>
+  </div>
+  <table class="table-auto border-2">
+    <thead class="border-b">
+      <tr>
+        <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">id (external_id)</th>
+        <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">First Name</th>
+        <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Last Name</th>
+        <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Email</th>
+        <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Created_at</th>
+        <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr class="border-b user-record">
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= "#{user.id} (External: #{user.external_id})" %></td>
+          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= link_to user.first_name, user_path(user), class: "underline underline-offset-4" %></td>
+          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= user.last_name %></td>
+          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= user.email %></td>
+          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= user.created_at %></td>
+          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= user.status %></td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+</section>

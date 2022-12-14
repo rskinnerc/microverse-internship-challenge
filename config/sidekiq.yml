@@ -1,0 +1,4 @@
+:schedule:
+  UsersWorker:
+    every: ["1m", first_in: "0m"]
+    class: "UsersWorker"
