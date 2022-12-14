@@ -2,6 +2,11 @@
 <section class="w-full md:w-8/12 md:mx-auto">
   <h1 class="mt-16 mb-6 text-cyan-500 text-2xl text-center">Awesome Users</h1>
   <p class="text-fuchsia-700 text-center my-5">A list of awesome users fetched from Microverse's API</p>
+  <ul class="flex justify-center p-2">
+    <% @pages.times do |page| %>
+      <li class="text-cyan-600 border-t-2 border-b-2 first:border-l-2 last:border-r-2 first:rounded-l-md last:rounded-r-md p-2"><%= link_to page+1, users_path(page: page + 1)  %></li>
+    <% end %>
+  </ul>
   <table class="table-auto border-2">
     <thead class="border-b">
       <tr>
