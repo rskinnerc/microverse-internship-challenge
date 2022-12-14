@@ -1,7 +1,17 @@
+require 'sidekiq-scheduler'
+
 class UsersWorker
   include Sidekiq::Worker
 
-  def perform(offset = 0, limit = 20)
+  def perform(limit = 20)
+    if User.all.empty?
+      offset = 0
+      limit = 100
+    else
+      offset = User.last[:external_id]
+    end
+    p "Importing users from offset #{offset} to #{offset + limit}"
+
     users = UsersService.new(offset, limit).get
     users.each do |user|
       User.find_or_create_by(external_id: user[:id]) do |u|
