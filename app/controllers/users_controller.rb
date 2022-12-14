@@ -1,7 +1,29 @@
 class UsersController < ApplicationController
-  def index; end
+  def index
+    page, limit = offset_and_limit
+    @pages = User.pages(limit)
+
+    if params[:filter].present?
+      @users = User.filter_by_status(params[:filter]).paginate(page.to_i, limit.to_i)
+    else
+      @users = User.paginate(page.to_i, limit.to_i)
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @users }
+    end
+  end
 
   def show
-    @name = 'James'
+    @user = User.find(params[:id])
+  end
+
+  private
+
+  def offset_and_limit
+    page = params[:page] || 1
+    limit = params[:limit] || 20
+    [page, limit]
   end
 end

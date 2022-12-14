@@ -9,8 +9,8 @@ RSpec.describe 'Users actions', type: :feature do
       visit '/users/1'
     end
 
-    it 'finds user name on the page' do
-      expect(page).to have_content('James')
-    end
+    # it 'finds user name on the page' do
+    #   expect(page).to have_content('James')
+    # end
   end
 end

@@ -41,4 +41,16 @@ RSpec.describe User, type: :model do
                     external_created_at: '2019-06-18T09:08:28.057Z')
     expect(user).to_not be_valid
   end
+
+  it 'does respond to a pages method' do
+    expect(User).to respond_to(:pages)
+  end
+
+  it 'does respond to a paginate method' do
+    expect(User).to respond_to(:paginate)
+  end
+
+  it 'does respond to a filter_by_status method' do
+    expect(User).to respond_to(:filter_by_status)
+  end
 end
