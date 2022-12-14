@@ -6,8 +6,12 @@ class User < ApplicationRecord
   validates :external_created_at, presence: true
   validates :email, presence: true
 
-  def self.pages(limit = 20)
-    (count / limit.to_f).ceil
+  def self.pages(limit = 20, filter = nil)
+    if filter.nil?
+      (count / limit.to_f).ceil
+    else
+      (filter_by_status(filter).count / limit.to_f).ceil
+    end
   end
 
   def self.paginate(page, limit)

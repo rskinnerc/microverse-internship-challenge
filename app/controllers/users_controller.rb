@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
   def index
-    page, limit = offset_and_limit
-    @pages = User.pages(limit)
+    @page, @limit = offset_and_limit
 
-    @users = if params[:filter].present?
-               User.filter_by_status(params[:filter]).paginate(page.to_i, limit.to_i)
+    @users = if filter.present?
+               User.filter_by_status(@filter).paginate(@page.to_i, @limit.to_i)
              else
-               User.paginate(page.to_i, limit.to_i)
+               User.paginate(@page.to_i, @limit.to_i)
              end
 
+    @pages = User.pages(@limit, @filter)
     respond_to do |format|
       format.html
       format.json { render json: @users }
@@ -25,5 +25,10 @@ class UsersController < ApplicationController
     page = params[:page] || 1
     limit = params[:limit] || 20
     [page, limit]
+  end
+
+  def filter
+    @filter = params[:filter]
+    @filter
   end
 end

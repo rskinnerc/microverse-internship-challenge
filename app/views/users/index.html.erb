@@ -4,7 +4,7 @@
   <p class="text-fuchsia-700 text-center my-5">A list of awesome users fetched from Microverse's API</p>
   <ul class="flex justify-center p-2">
     <% @pages.times do |page| %>
-      <li class="text-cyan-600 border-t-2 border-b-2 first:border-l-2 last:border-r-2 first:rounded-l-md last:rounded-r-md p-2"><%= link_to page+1, users_path(page: page + 1)  %></li>
+      <li class="text-cyan-600 border-t-2 border-b-2 first:border-l-2 last:border-r-2 first:rounded-l-md last:rounded-r-md p-2"><%= link_to page+1, users_path(page: page + 1, limit: @limit, filter: @filter)  %></li>
     <% end %>
   </ul>
   <table class="table-auto border-2">
@@ -20,7 +20,7 @@
     </thead>
     <tbody>
       <% @users.each do |user| %>
-        <tr class="border-b">
+        <tr class="border-b user-record">
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= "#{user.id} (External: #{user.external_id})" %></td>
           <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= user.first_name %></td>
           <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><%= user.last_name %></td>
