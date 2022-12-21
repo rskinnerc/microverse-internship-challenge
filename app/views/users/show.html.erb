@@ -1,1 +1,6 @@
-<p>Hello, <%= @name %></p>
+<section class="w-full md:w-8/12 md:mx-auto">
+  <h1 class="mt-16 mb-6 text-cyan-500 text-2xl text-center">Awesome Users</h1>
+  <h2 class="text-fuchsia-700 text-center my-5 text-xl font-bold"><%= "#{@user.first_name} #{@user.last_name}"%></h2>
+  <p class="text-center"><%= @user.email %></p>
+  <p class="text-center"><%= "Created at: #{@user.external_created_at}" %></p>
+</section>
